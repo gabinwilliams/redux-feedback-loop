@@ -1,0 +1,13 @@
+.header {
+  
+  background-color: #033076;
+  min-height: 70px;
+  padding: 20px;
+  color: white;
+  border-radius: 5px;
+  margin: 0px 20px 80px 20px;
+}
+
+.header-title {
+  font-size: 2em;
+}
