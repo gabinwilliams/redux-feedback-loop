@@ -6,7 +6,7 @@ This is feedback-loop fullstack app!
 
 The point of the project was to practice     using HashRouter, Route, and Link from `react-router-dom` and reinforce redux state-management in a single page app.
 
-![screenshot of the app]()
+![screenshot of the app](https://github.com/gabinwilliams/redux-feedback-loop/blob/master/wireframes/gif/feedback-loop.gif)
 
 ### Prerequisites
 
