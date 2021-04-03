@@ -29,10 +29,9 @@ export default function SimpleSelect() {
   return (
     <div>
       <FormControl required className={classes.formControl}>
-        <InputLabel id="demo-simple-select-required-label">Rating</InputLabel>
+        <InputLabel>Rating</InputLabel>
         <Select
-          labelId="demo-simple-select-required-label"
-          id="demo-simple-select-required"
+          
           value={rating}
           onChange={handleChange}
           className={classes.selectEmpty}

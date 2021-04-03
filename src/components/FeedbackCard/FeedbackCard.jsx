@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import './FeedbackCard.css';
 import Select from '../Select/Select';
+import {useSelector} from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
@@ -30,27 +31,25 @@ const useStyles = makeStyles({
 });
 
  function FeedbackCard() {
+
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
+  
+  const question = useSelector(store => {
+    return store.questions;
+  })
+
 
   return (
     <Card variant="outlined" className={classes.root}>
       <CardContent>
-        <Typography className={classes.title} color="textSecondary" gutterBottom>
-          Word of the Day
-        </Typography>
-        
-        <Typography className={classes.pos} color="textSecondary">
-          adjective
-        </Typography>
         <Typography variant="body2" component="p">
-          well meaning and kindly.
+          {question.feedback1}
           <br />
           {'"a benevolent smile"'}
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Learn More</Button>
+        <Button size="small">Next</Button>
       </CardActions>
       <CardActions>
         <Select />
