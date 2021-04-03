@@ -1,4 +1,4 @@
-import React from 'react';
+import {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
@@ -7,7 +7,8 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import './FeedbackCard.css';
 import Select from '../Select/Select';
-import {useSelector} from 'react-redux';
+import { Link, Router, Rout } from 'react-router-dom';
+import {useSelector, useDispatch} from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
@@ -30,26 +31,51 @@ const useStyles = makeStyles({
   },
 });
 
- function FeedbackCard() {
+ function FeedbackCard1() {
+
+  
+  const dispatch = useDispatch();
 
   const classes = useStyles();
-  
+
   const question = useSelector(store => {
     return store.questions;
   })
+
+  const currentPage = useSelector(store => {
+    return store.currentPage;
+  })
+
+
+  const pageCount = useSelector(store => {
+    return store.count;
+  })
+
+ 
+  // const [feedback, setFeedback] = useState('');
+
+  const handleClick = () => {
+   
+
+    dispatch({type: 'count++', payload: pageCount})
+    // dispatch({type: 'page2', payload: currentPage}) 
+    dispatch({type: 'page2', payload: question})    
+  }
 
 
   return (
     <Card variant="outlined" className={classes.root}>
       <CardContent>
         <Typography variant="body2" component="p">
-          {question.feedback1}
+          {question.feedback}
           <br />
-          {'"a benevolent smile"'}
+          
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Next</Button>
+        <Link to = '/page2'>
+          <Button onClick={handleClick} size="small">Next</Button>
+        </Link>
       </CardActions>
       <CardActions>
         <Select />
@@ -58,4 +84,4 @@ const useStyles = makeStyles({
   );
 }
 
-export default FeedbackCard;
+export default FeedbackCard1;

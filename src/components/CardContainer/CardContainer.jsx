@@ -1,6 +1,8 @@
 import React from 'react'
 import './CardContainer.css';
-import Card from '../FeedbackCard/FeedbackCard';
+import FeedbackCard1 from '../FeedbackCard/FeedbackCard1';
+import FeedbackCard2 from '../FeedbackCard/FeedbackCard2';
+import FeedbackCard3 from '../FeedbackCard/FeedbackCard3';
 import {useSelector} from 'react-redux';
 
 const CardContainer = () => {
@@ -9,13 +11,25 @@ const CardContainer = () => {
     return store.count;
   })
 
+  const cardToUse = () => {
+    if(pageCount === 1) {
+      return (<FeedbackCard1 />)
+    }
+    if(pageCount === 2) {
+      return (<FeedbackCard2 />)
+    }
+    if(pageCount === 3) {
+      return (<FeedbackCard3 />)
+    }
+  }
+
 
   return (
     <>
       <main className='main'>
         <p>PAGE {pageCount} of 4</p>
         <div className='load-bar'></div>
-        <Card />
+        {cardToUse()}
       </main>
     </>
   )

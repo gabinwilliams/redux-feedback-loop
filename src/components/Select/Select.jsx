@@ -6,6 +6,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import {useSelector, useDispatch} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -20,10 +21,30 @@ const useStyles = makeStyles((theme) => ({
 export default function SimpleSelect() {
   const classes = useStyles();
 
+  const dispatch = useDispatch();
+
+  const pageCount = useSelector((store) => {
+    return store.count;
+  })
+
   const [rating, setRating] = useState('');
 
   const handleChange = (event) => {
-    setRating(event.target.value);
+    setRating(event.target.value)
+
+    if(pageCount === 1) {
+
+      dispatch({type: 'updateFeeling', payload: event.target.value})
+    }
+    if(pageCount === 2) {
+
+      dispatch({type: 'updateUnderstanding', payload: event.target.value})
+    }
+    if(pageCount === 3) {
+
+      dispatch({type: 'updateSupport', payload: event.target.value})
+    }
+    
   };
 
   return (

@@ -10,17 +10,35 @@ import { applyMiddleware } from 'redux';
 
 
 
+// const currentPage = (state = 'page2', action) => {
+
+//     if(action.type === 'page2') {
+
+//       state = '/page3'
+//     }
+
+//     if(action.type === 'page3') {
+
+//       state = '/page4'
+//     }
+
+//   return state;
+// }
+
 const questions = (state = {
 
-  feedback1: 'How are you feeling today?',
-  feedback2: 'How well are you understanding the content?',
-  feedback3: 'How well are you being supported?',
-  feedback4: 'Any comments you want to leave?'
+  feedback: 'How are you feeling today?'
+  // feedback2: 'How well are you understanding the content?',
+  // feedback3: 'How well are you being supported?',
+  // feedback4: 'Any comments you want to leave?'
 
   }, action) => {
 
-  if(action.type === 'page1') {
-    state = state.feedback1;
+  if(action.type === 'page2') {
+    state = {feedback: 'How well are you understanding the content?'};
+  }
+  if(action.type === 'page3') {
+    state = {feedback: 'How well are you being supported?'};
   }
 
   return state;
@@ -35,6 +53,27 @@ const feedback = (state = {
   comments: ''
   
 }, action) => {
+
+  if(action.type === 'updateFeeling'){
+
+    state = {...state, 
+      feeling: action.payload
+      }
+  }
+
+  if(action.type === 'updateUnderstanding'){
+
+    state = {...state, 
+      understanding: action.payload
+      }
+  }
+
+  if(action.type === 'updateSupport'){
+
+    state = {...state, 
+      support: action.payload
+      }
+  }
 
   return state;
 }
@@ -58,6 +97,8 @@ const store = createStore(
     questions: questions,
     feedback: feedback,
     count: count,
+    
+    
   }),
   applyMiddleware(logger)
 );
