@@ -16,7 +16,7 @@ const useStyles = makeStyles({
   root: {
     display: 'flex',
     flexWrap: 'wrap',
-    alignContent: 'space-between',
+    alignContent: 'space-around',
     justifyContent: 'center',
     backgroundColor: '#f2a154',
     textAlign: 'center',
