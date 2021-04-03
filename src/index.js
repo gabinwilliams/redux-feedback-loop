@@ -89,8 +89,8 @@ const count = (state = 1, action) => {
     state  --;
   }
 
-  if(action.type === 'countZero'){
-    state = 0;
+  if(action.type === 'countRestart'){
+    state = 1;
   }
 
   return state;

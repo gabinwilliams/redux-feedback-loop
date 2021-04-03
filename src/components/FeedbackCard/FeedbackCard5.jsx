@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import axios from 'axios';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '../TextField/TextField';
 import Card from '@material-ui/core/Card';
@@ -8,7 +9,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import './FeedbackCard.css';
 import Select from '../Select/Select';
-import { Link, Router, Rout } from 'react-router-dom';
+import { Link, Router, Rout, useHistory} from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
 import 'fontsource-roboto';
 
@@ -36,7 +37,7 @@ const useStyles = makeStyles({
 
  function FeedbackCard5() {
 
-  
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const classes = useStyles();
@@ -61,11 +62,30 @@ const useStyles = makeStyles({
 
   const handleClick = () => {
    
-
-    dispatch({type: 'countZero', payload: pageCount})
-    
+    dispatch({type: 'countRestart', payload: pageCount})
     dispatch({type: 'page1', payload: question})    
-  }
+
+    // POST student to the server
+    axios({
+      method: 'POST',
+      url: '/feedback',
+      data: {
+
+        feeling: feedback.feeling,
+        understanding: feedback.understanding,
+        support: feedback.support,
+        comments: feedback.comments        
+      }
+  }).then((response) => {
+      console.log(response);
+      history.push('/');
+  }).catch((err) => {
+      console.log(err);
+  });
+};
+
+
+  
 
 
   return (
