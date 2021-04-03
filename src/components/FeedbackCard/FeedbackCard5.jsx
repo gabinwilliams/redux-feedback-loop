@@ -78,6 +78,9 @@ const useStyles = makeStyles({
       }
   }).then((response) => {
       console.log(response);
+
+      dispatch({type: 'reset', payload: feedback})
+
       history.push('/');
   }).catch((err) => {
       console.log(err);

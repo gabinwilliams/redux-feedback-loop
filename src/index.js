@@ -48,6 +48,18 @@ const feedback = (state = {
   
 }, action) => {
 
+  if(action.type === 'reset'){
+
+    state = {
+
+      feeling: 0,
+      understanding: 0,
+      support: 0,
+      comments: ''
+      
+    }
+  }
+
   if(action.type === 'updateFeeling'){
 
     state = {...state, 

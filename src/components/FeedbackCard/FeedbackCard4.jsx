@@ -14,23 +14,20 @@ import {useSelector, useDispatch} from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: '#e7e6e1',
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignContent: 'space-between',
+    justifyContent: 'center',
+    backgroundColor: '#f2a154',
+    textAlign: 'center',
     marginTop: 40,
     margin: 'auto',
+    minHeight: 250,
     minWidth: 275,
     maxWidth: 500
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
+   
+  
 });
 
  function FeedbackCard4() {
@@ -70,7 +67,7 @@ const useStyles = makeStyles({
   return (
     <Card variant="outlined" className={classes.root}>
       <CardContent>
-        <Typography variant="body2" component="p">
+        <Typography variant="h5" component="p">
           {question.feedback}
           <br />
           
