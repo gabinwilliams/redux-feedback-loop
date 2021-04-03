@@ -3,6 +3,7 @@ import './CardContainer.css';
 import FeedbackCard1 from '../FeedbackCard/FeedbackCard1';
 import FeedbackCard2 from '../FeedbackCard/FeedbackCard2';
 import FeedbackCard3 from '../FeedbackCard/FeedbackCard3';
+import FeedbackCard4 from '../FeedbackCard/FeedbackCard4';
 import {useSelector} from 'react-redux';
 
 const CardContainer = () => {
@@ -20,6 +21,9 @@ const CardContainer = () => {
     }
     if(pageCount === 3) {
       return (<FeedbackCard3 />)
+    }
+    if(pageCount === 4) {
+      return (<FeedbackCard4 />)
     }
   }
 

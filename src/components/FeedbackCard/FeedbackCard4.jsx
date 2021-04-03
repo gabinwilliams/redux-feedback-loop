@@ -1,5 +1,6 @@
 import {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import TextField from '../TextField/TextField';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -9,6 +10,7 @@ import './FeedbackCard.css';
 import Select from '../Select/Select';
 import { Link, Router, Rout } from 'react-router-dom';
 import {useSelector, useDispatch} from 'react-redux';
+
 
 const useStyles = makeStyles({
   root: {
@@ -31,7 +33,7 @@ const useStyles = makeStyles({
   },
 });
 
- function FeedbackCard1() {
+ function FeedbackCard4() {
 
   
   const dispatch = useDispatch();
@@ -42,40 +44,26 @@ const useStyles = makeStyles({
     return store.questions;
   })
 
-  const currentPage = useSelector(store => {
-    return store.currentPage;
+  const feedback = useSelector(store => {
+    return store.feedback;
   })
+
+  
 
 
   const pageCount = useSelector(store => {
     return store.count;
   })
 
-  const feedback = useSelector(store => {
-    return store.feedback;
-  })
-
-  const renderButton = () => {
-
-    if(feedback.feeling > 0) {
-      return (
-        <Link to = '/page2'>
-          <Button onClick={handleClick} size="small">Next</Button>
-        </Link>
-      )
-    }
-  }
-  
-
  
-  
+
 
   const handleClick = () => {
    
 
     dispatch({type: 'count++', payload: pageCount})
-    // dispatch({type: 'page2', payload: currentPage}) 
-    dispatch({type: 'page2', payload: question})    
+    
+    dispatch({type: 'page4', payload: question})    
   }
 
 
@@ -89,13 +77,15 @@ const useStyles = makeStyles({
         </Typography>
       </CardContent>
       <CardActions>
-        {renderButton()}
+        <Link to = '/page4'>
+          <Button onClick={handleClick} size="small">Next</Button>
+        </Link>
       </CardActions>
       <CardActions>
-        <Select />
+        <TextField />
       </CardActions>
     </Card>
   );
 }
 
-export default FeedbackCard1;
+export default FeedbackCard4;

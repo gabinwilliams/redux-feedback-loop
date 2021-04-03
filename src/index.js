@@ -40,6 +40,9 @@ const questions = (state = {
   if(action.type === 'page3') {
     state = {feedback: 'How well are you being supported?'};
   }
+  if(action.type === 'page4') {
+    state = {feedback: 'Any comments you want to leave?'}
+  }
 
   return state;
 }
@@ -72,6 +75,13 @@ const feedback = (state = {
 
     state = {...state, 
       support: action.payload
+      }
+  }
+
+  if(action.type === 'updateComment'){
+
+    state = {...state, 
+      comments: action.payload
       }
   }
 

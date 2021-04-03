@@ -42,9 +42,20 @@ const useStyles = makeStyles({
     return store.questions;
   })
 
-  const currentPage = useSelector(store => {
-    return store.currentPage;
+  const feedback = useSelector(store => {
+    return store.feedback;
   })
+
+  const renderButton = () => {
+
+    if(feedback.understanding > 0) {
+      return (
+        <Link to = '/page3'>
+          <Button onClick={handleClick} size="small">Next</Button>
+        </Link>
+      )
+    }
+  }
 
 
   const pageCount = useSelector(store => {
@@ -73,9 +84,7 @@ const useStyles = makeStyles({
         </Typography>
       </CardContent>
       <CardActions>
-        <Link to = '/page3'>
-          <Button onClick={handleClick} size="small">Next</Button>
-        </Link>
+        {renderButton()}
       </CardActions>
       <CardActions>
         <Select />

@@ -5,6 +5,7 @@ import './App.css';
 import Home from '../Active/Home/Home';
 import Page2 from '../Active/Page2/Page2';
 import Page3 from '../Active/Page3/Page3';
+import Page4 from '../Active/Page4/Page4';
 
 function App() {
 
@@ -24,6 +25,10 @@ const Router = HashRouter;
 
         <Route path='/Page3' exact>
           <Page3 />
+        </Route>
+
+        <Route path='/Page4' exact>
+          <Page4 />
         </Route>
 
       </Router>

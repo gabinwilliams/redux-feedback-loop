@@ -2,11 +2,13 @@ import React from 'react';
 import {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
+import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import {useSelector, useDispatch} from 'react-redux';
+import { Link, Router, Rout } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -29,22 +31,27 @@ export default function SimpleSelect() {
 
   const [rating, setRating] = useState('');
 
+  
+
   const handleChange = (event) => {
-    setRating(event.target.value)
 
-    if(pageCount === 1) {
+    if(event.target.value > 0){
 
-      dispatch({type: 'updateFeeling', payload: event.target.value})
-    }
-    if(pageCount === 2) {
+      setRating(event.target.value)
 
-      dispatch({type: 'updateUnderstanding', payload: event.target.value})
-    }
-    if(pageCount === 3) {
+      if(pageCount === 1) {
 
-      dispatch({type: 'updateSupport', payload: event.target.value})
-    }
-    
+        dispatch({type: 'updateFeeling', payload: event.target.value})
+      }
+      if(pageCount === 2) {
+
+        dispatch({type: 'updateUnderstanding', payload: event.target.value})
+      }
+      if(pageCount === 3) {
+
+        dispatch({type: 'updateSupport', payload: event.target.value})
+      }
+  }
   };
 
   return (
@@ -68,8 +75,9 @@ export default function SimpleSelect() {
         </Select>
         <FormHelperText>Required</FormHelperText>
       </FormControl>
-
+     
     </div>
+    
      
   )
 
