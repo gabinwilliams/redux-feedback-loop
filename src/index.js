@@ -10,20 +10,7 @@ import { applyMiddleware } from 'redux';
 
 
 
-// const currentPage = (state = 'page2', action) => {
 
-//     if(action.type === 'page2') {
-
-//       state = '/page3'
-//     }
-
-//     if(action.type === 'page3') {
-
-//       state = '/page4'
-//     }
-
-//   return state;
-// }
 
 const questions = (state = {
 
@@ -33,6 +20,10 @@ const questions = (state = {
   // feedback4: 'Any comments you want to leave?'
 
   }, action) => {
+  
+    if(action.type === 'page1') {
+      state = {feedback: 'How are you feeling today?'};
+    }
 
   if(action.type === 'page2') {
     state = {feedback: 'How well are you understanding the content?'};
@@ -97,6 +88,11 @@ const count = (state = 1, action) => {
   if(action.type === 'count--') {
     state  --;
   }
+
+  if(action.type === 'countZero'){
+    state = 0;
+  }
+
   return state;
 }
 

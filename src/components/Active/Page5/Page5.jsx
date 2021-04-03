@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../../Header/Header';
 import CardContainer from '../../CardContainer/CardContainer';
 
-const Page4 = () => {
+const Page5 = () => {
   return (
     <>
       <Header/>
@@ -12,4 +12,4 @@ const Page4 = () => {
   )
 }
 
-export default Page4;
+export default Page5;
