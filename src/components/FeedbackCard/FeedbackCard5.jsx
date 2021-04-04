@@ -1,31 +1,28 @@
-import {useState} from 'react';
-import axios from 'axios';
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '../TextField/TextField';
-import Card from '@material-ui/core/Card';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import './FeedbackCard.css';
-import Select from '../Select/Select';
-import { Link, Router, Rout, useHistory} from 'react-router-dom';
-import {useSelector, useDispatch} from 'react-redux';
-import 'fontsource-roboto';
+import { useState } from "react";
+import axios from "axios";
+import { makeStyles } from "@material-ui/core/styles";
+import Card from "@material-ui/core/Card";
+import CardActions from "@material-ui/core/CardActions";
+import CardContent from "@material-ui/core/CardContent";
+import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
 
+import { Link, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
+import "fontsource-roboto";
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: '#f2a154',
+    backgroundColor: "#f2a154",
     marginTop: 40,
-    margin: 'auto',
+    margin: "auto",
     minWidth: 275,
-    maxWidth: 500
+    maxWidth: 500,
   },
   bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
+    display: "inline-block",
+    margin: "0 2px",
+    transform: "scale(0.8)",
   },
   title: {
     fontSize: 14,
@@ -35,61 +32,50 @@ const useStyles = makeStyles({
   },
 });
 
- function FeedbackCard5() {
-
+function FeedbackCard5() {
   const history = useHistory();
   const dispatch = useDispatch();
 
   const classes = useStyles();
 
-  const question = useSelector(store => {
+  const question = useSelector((store) => {
     return store.questions;
-  })
+  });
 
-  const feedback = useSelector(store => {
+  const feedback = useSelector((store) => {
     return store.feedback;
-  })
+  });
 
-  
-
-
-  const pageCount = useSelector(store => {
+  const pageCount = useSelector((store) => {
     return store.count;
-  })
-
- 
-
+  });
 
   const handleClick = () => {
-   
-    dispatch({type: 'countRestart', payload: pageCount})
-    dispatch({type: 'page1', payload: question})    
+    dispatch({ type: "countRestart", payload: pageCount });
+    dispatch({ type: "page1", payload: question });
 
-    // POST student to the server
+    // POST to the server
     axios({
-      method: 'POST',
-      url: '/feedback',
+      method: "POST",
+      url: "/feedback",
       data: {
-
         feeling: feedback.feeling,
         understanding: feedback.understanding,
         support: feedback.support,
-        comments: feedback.comments        
-      }
-  }).then((response) => {
-      console.log(response);
-
-      dispatch({type: 'reset', payload: feedback})
-
-      history.push('/');
-  }).catch((err) => {
-      console.log(err);
-  });
-};
-
-
-  
-
+        comments: feedback.comments,
+      },
+    })
+      .then((response) => {
+        console.log(response);
+        // resets feedback obj state to empty obj
+        dispatch({ type: "reset", payload: feedback });
+        // send you back to the home page
+        history.push("/");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <Card variant="outlined" className={classes.root}>
@@ -97,17 +83,16 @@ const useStyles = makeStyles({
         <Typography variant="h4" component="p">
           Thank you!!
           <br />
-          
         </Typography>
       </CardContent>
       <CardActions>
-        <Link to = '/'>
-          <Button onClick={handleClick} size="large">Leave New Feedback</Button>
+        <Link to="/">
+          <Button onClick={handleClick} size="large">
+            Leave New Feedback
+          </Button>
         </Link>
       </CardActions>
-      <CardActions>
-        
-      </CardActions>
+      <CardActions></CardActions>
     </Card>
   );
 }

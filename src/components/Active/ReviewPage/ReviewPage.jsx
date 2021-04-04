@@ -1,39 +1,40 @@
 import { useState } from "react";
+import axios from "axios";
+import './ReviewPage.css';
 import { makeStyles } from "@material-ui/core/styles";
-import TextField from "../TextField/TextField";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Link } from "react-router-dom";
+
+import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
+import "fontsource-roboto";
 
 const useStyles = makeStyles({
   root: {
-    display: "flex",
-    flexWrap: "wrap",
-    alignContent: "space-around",
-    justifyContent: "center",
+    display: 'flex',
+    justifyContent: 'center',
     backgroundColor: "#f2a154",
-    textAlign: "center",
     marginTop: 40,
     margin: "auto",
-    minHeight: 250,
     minWidth: 275,
     maxWidth: 500,
+
   },
+ 
+  title: {
+    fontSize: 14,
+  }
 });
 
-function FeedbackCard4() {
+const ReviewPage = () => {
+
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const classes = useStyles();
-
-  const question = useSelector((store) => {
-    return store.questions;
-  });
-
   const feedback = useSelector((store) => {
     return store.feedback;
   });
@@ -42,32 +43,40 @@ function FeedbackCard4() {
     return store.count;
   });
 
-  const handleClick = () => {
-    dispatch({ type: "count++", payload: pageCount });
+    const handleClick = () => {
+      dispatch({ type: "count++", payload: pageCount });
 
-    dispatch({ type: "page4", payload: question });
-  };
+    }
+    
+
 
   return (
-    <Card variant="outlined" className={classes.root}>
+    <>
+      <div className="main">
+      <Card variant="outlined" className={classes.root}>
       <CardContent>
-        <Typography variant="h5" component="p">
-          {question.feedback}
+        <Typography variant="h4" component="p">
+        Review your Feedback
           <br />
         </Typography>
+        
       </CardContent>
       <CardActions>
-        <Link to="/ReviewPage">
+        <Link to="/Page5">
           <Button onClick={handleClick} size="small">
-            Next
+            Submit
           </Button>
         </Link>
       </CardActions>
-      <CardActions>
-        <TextField />
-      </CardActions>
     </Card>
-  );
+        
+        <h4>Feelings: {feedback.feeling}</h4>
+        <h4>Understanding: {feedback.understanding}</h4>
+        <h4>Support: {feedback.support}</h4>
+        <h4>Comments: {feedback.comments}</h4>
+      </div>
+    </>
+  )
 }
 
-export default FeedbackCard4;
+export default ReviewPage;

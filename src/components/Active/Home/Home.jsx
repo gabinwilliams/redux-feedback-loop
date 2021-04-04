@@ -1,19 +1,14 @@
-import React from 'react'
-import Header from '../../Header/Header';
-import CardContainer from '../../CardContainer/CardContainer';
-
-
+import React from "react";
+import Header from "../../Header/Header";
+import CardContainer from "../../CardContainer/CardContainer";
 
 const Home = () => {
-
   return (
     <>
-      <Header/>
+      <Header />
       <CardContainer />
-        
     </>
-  )
-}
+  );
+};
 
-export default Home
-
+export default Home;
