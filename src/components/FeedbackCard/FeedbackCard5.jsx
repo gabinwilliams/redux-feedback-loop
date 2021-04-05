@@ -54,27 +54,8 @@ function FeedbackCard5() {
     dispatch({ type: "countRestart", payload: pageCount });
     dispatch({ type: "page1", payload: question });
 
-    // POST to the server
-    axios({
-      method: "POST",
-      url: "/feedback",
-      data: {
-        feeling: feedback.feeling,
-        understanding: feedback.understanding,
-        support: feedback.support,
-        comments: feedback.comments,
-      },
-    })
-      .then((response) => {
-        console.log(response);
-        // resets feedback obj state to empty obj
-        dispatch({ type: "reset", payload: feedback });
-        // send you back to the home page
-        history.push("/");
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    history.push("/");
+
   };
 
   return (
